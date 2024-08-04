@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>key event handler</title>
+        <style>
+            h1 {
+                text-align: center;
+            }
+            #ball {
+                width: 20px;
+                height: 20px;
+                background-color: black;
+                border-radius: 50%;
+                position: absolute;
+                transition-duration: 0.2s;
+                background: radial-gradient(circle at 20% 20%, white, blue);
+                /* transform: translate(-10px, -10px); */
+            }
+            #ballcont {
+                width: 1270px;
+                height: 590px;
+                border: 3px solid black;
+                position: relative;
+                margin: 0 auto;
+            }
+            #container {
+                width: 1400px;
+                height: 700px;
+                border: 3px solid black;
+                padding: 30px;
+            }
+            input {
+                display: block;
+                margin: 10px auto;
+                width: 400px;
+                height: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>방향키로 공 움직이기</h1>
+            <div id="ballcont">
+                <div id="ball"></div>
+            </div>
+            <input placeholder="여기에 커서를 올리고 방향키를 눌러 공을 움직이세요" size="160px" autofocus />
+        </div>
+
+        <script>
+            const input = document.querySelector("input");
+            const ball = document.querySelector("#ball");
+            let log;
+            let right = 0;
+            let down = 0;
+            input.addEventListener("keydown", (e) => {
+                log = e.code;
+                if (log == "ArrowLeft") {
+                    right -= 1;
+                } else if (log == "ArrowRight") {
+                    right += 1;
+                } else if (log == "ArrowDown") {
+                    down += 1;
+                } else if (log == "ArrowUp") {
+                    down -= 1;
+                }
+                if (right < 0) {
+                    right = 0;
+                }
+                if (right > 25) {
+                    right = 25;
+                }
+                if (down < 0) {
+                    down = 0;
+                }
+                if (down > 19) {
+                    down = 19;
+                }
+                console.log(log);
+                console.log("right : " + right + "down : " + down);
+                ball.style.transform = `translate(${right * 50}px,${down * 30}px)`;
+            });
+        </script>
+    </body>
+</html>
