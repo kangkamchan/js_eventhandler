@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                margin: 20px;
+            }
+            .button {
+                border: 1px solid black;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                display: inline-block;
+                border-radius: 5px;
+                background-color: yellowgreen;
+                border: transparent;
+            }
+            .button:hover {
+                background-color: green;
+            }
+            #result {
+                background-color: green;
+                width: 400px;
+                height: 400px;
+                font-size: 26px;
+                text-align: center;
+                line-height: 400px;
+                font-weight: bold;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>mouse 이벤트 처리기 활용</h1>
+        <div class="button" onclick="bgChange()">click</div>
+        <div class="button" ondblclick="bgChange()">dblclick</div>
+        <div class="button" onmousedown="bgChange()">mousedown</div>
+        <div class="button" onmousemove="bgChange()">mousemove</div>
+        <div class="button" onmouseover="bgChange()">mouseover</div>
+        <div class="button" onmouseout="bgChange()">mouseout</div>
+        <div class="button" onmouseup="bgChange()">mouseup</div>
+        <div id="result">배경색이 변하는 것을 확인하세요.</div>
+
+        <script>
+            function bgChange() {
+                let result = document.querySelector("#result");
+                let colArr = ["orange", "blue", "black", "purple", "pink", "red", "yellow", "skyblue", "cyan", "lime"];
+                let color = colArr[Math.floor(colArr.length * Math.random())];
+                result.style.backgroundColor = color;
+            }
+        </script>
+    </body>
+</html>

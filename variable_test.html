@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            /*----------------test 1 var 을 함수 안에서 선언하고 밖에서 호출이 가능한지-----------------*/
+            function addnumber(a, b) {
+                var sum;
+                sum = a + b;
+                return sum;
+            }
+            console.log(addnumber(2, 3));
+            console.log(sum); // var는 함수영역 스코프 , undifined
+            /*--------------------test2 함수 안의 블록에서 var와 let 선언하고 블록 밖, 함수 안에서 호출이 가능한지--------------------*/
+            function calcSum(n) {
+                let sum = 0;
+                for (var i = 1; i < n + 1; i++) {
+                    sum += i;
+                }
+                {
+                    let j = 3;
+                }
+                console.log("sum : " + sum);
+                console.log("i : " + i); //var는 함수 영역 스코프, 함수 내에서 선언되었기 때문에 블록과 상관 없이 함수 내에서는 호출 가능
+                console.log("j : " + j); //let은 블록 영역 스코프, 블록({}로 묶인 부분)을 벗어나면 호출 불가능
+                return sum;
+            }
+            console.log(calcSum(5));
+            /*--------------------test3 블록 안의 블록에서 var와 let 선언하고 바깥 블록내부, 바깥 블록 외부에서 호출 가능한지-------------------*/
+            {
+                {
+                    let a = 1;
+                    var b = 2;
+                }
+
+                console.log("b" + b); //var는 함수 영역 스코프 함수가 아닌 블록은 영항이 없음
+                console.log("a" + a); //let은 블록 영역 스코프, 블록({}로 묶인 부분)을 벗어나면 호출 불가능
+            }
+            console.log("b" + b); //var는 함수 영역 스코프 함수가 아닌 블록은 영항이 없음
+            /*--------------------test4 블록 안의 함수, 그 안의 블록에서 var와 let 선언하고 호출 가능여부-------------------*/
+            {
+                function test() {
+                    {
+                        var k = 3;
+                        let l = 4;
+                    }
+                    console.log("k : " + k); //var는 함수 영역 스코프, 함수 내에서 선언되었기 때문에 블록과 상관 없이 함수 내에서는 호출 가능
+                    console.log("l : " + l); //let은 블록 영역 스코프, 블록({}로 묶인 부분)을 벗어나면 호출 불가능
+                }
+                console.log("k3 : " + k); //var는 함수 영역 스코프, 함수 벗어난 곳에서는 호출 불가능
+            }
+            test();
+            console.log("k2 : " + k); //var는 함수 영역 스코프, 함수 벗어난 곳에서는 호출 불가능
+        </script>
+    </body>
+</html>
